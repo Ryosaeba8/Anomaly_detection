@@ -2,7 +2,6 @@ import json
 import torch
 
 from base.base_dataset import BaseADDataset
-from networks.main import build_network, build_autoencoder
 from optim.deepSVDD_trainer import DeepSVDDTrainer
 from optim.ae_trainer import AETrainer
 
@@ -132,8 +131,6 @@ class DeepSVDD(object):
         self.c = model_dict['c']
         self.net.load_state_dict(model_dict['net_dict'])
         if load_ae:
-            if self.ae_net is None:
-                self.ae_net = build_autoencoder(self.net_name)
             self.ae_net.load_state_dict(model_dict['ae_net_dict'])
 
     def save_results(self, export_json):
