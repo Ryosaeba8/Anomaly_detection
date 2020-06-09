@@ -65,8 +65,8 @@ class AETrainer(BaseTrainer):
 
             # log epoch statistics
             epoch_train_time = time.time() - epoch_start_time
-            #print('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
-            #            .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
+            print('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
+                        .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
 
         pretrain_time = time.time() - start_time
         #print('Pretraining time: %.3f' % pretrain_time)
