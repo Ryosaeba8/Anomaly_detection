@@ -7,7 +7,10 @@ Dans le cas de l'auto_encodeur le score d'anomalie est l'erreur de reconstructio
  * Autoencodeur avec comme dimension de l'espace latent dans [2, 3, 5, 10, 20] : globalement c'est le modèle le plus stable/performant de cette famille et l'auc moyen augmente en fonction de la dimension. En terme de auc precision_recall l'autoencodeur est meilleur que IForest et OneClass pour ce data.
  * Deep SVDD avec les deux configurations évoquées dans l'article : La variabilité des performances d'une exécution à l'autre est énorme. Je suis encore entrain d'investiguer sur les raisons derrière cette grande variabilité
  * J'ai aussi évalué les résultats des modèles OneClassSVM et IForest sur les données encodées : Là encore la variabilité n'est pas faible
-
+## PCA
+<p align="center">
+  <img src="images/img_1.png">
+</p>
 
 
 ## Citation
