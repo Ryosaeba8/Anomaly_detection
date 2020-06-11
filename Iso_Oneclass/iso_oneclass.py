@@ -10,18 +10,35 @@ from utilities import Dataset, plot_precision_recall, writeResults
 import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
 from sklearn.svm import OneClassSVM
+from scipy.spatial import cKDTree
 plt.ioff()
     
 def train_and_predict(model, X_train, X_val, Y_val,
                       name, contamination = "", save=True) :
     
-    if model == "Iforest" : 
+    if model =="KNN":
+         tree = cKDTree(X_train)
+         scores, ind = tree.query(X_val, k=contamination, n_jobs=8) 
+         list_neigh = np.arange(100, contamination, 50)
+         for neig in list_neigh :
+             scores_ = np.mean(scores[:, :neig], axis=1)
+             auc = plot_precision_recall([scores_], [Y_val], name = ['Val'],
+                          name_model = "hard_KNN_"+ str(neig))
+             writeResults(name, dim=neig,
+                     auc=auc, path = "./results/auc_performance.csv",
+                     std_auc = 0.0)      
+         return None 
+    
+    elif model == "Iforest" : 
         model = IsolationForest(n_estimators=100)  
-    else :
+        model.fit(X_train)
+        scores = -model.score_samples(X_val)
+    elif model =="OneClass" :
         model = OneClassSVM(gamma='auto',
                             nu=contamination)  
-    model.fit(X_train)
-    scores = -model.score_samples(X_val)
+        model.fit(X_train)
+        scores = -model.score_samples(X_val)
+    
     auc = plot_precision_recall([scores], [Y_val], name = ['Val'],
                               name_model = name)
     if save :
@@ -34,6 +51,12 @@ if __name__ == '__main__' :
     
     data = Dataset()
     X_train = data.X_train[np.where(data.Y_train == 1)[0]]   
+    
+    
+    ## Training KNN 
+    contamination = 1000
+    train_and_predict("KNN", data.X_train, data.X_val, data.Y_val, 
+                      "KNN", contamination = contamination, save=False)
     
     ## Training Iforest
     auc = np.zeros(10)
