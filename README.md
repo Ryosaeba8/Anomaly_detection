@@ -21,6 +21,7 @@ Les repertoires associés aux modèles contiennent des scripts.py, un dossier im
 <p align="center">
   <img src="KNN_ISO_OneClass.png">
 </p>
+
  * KNN est globalement plus performants que les autres approches, vient ensuite le OneClassSVM. Par ailleurs il est important de noter que'entraîner le KNN en gardant des anomalies dans les données d'entraînement dégrade considérablement les performances.
  * KNN et OneClass prennent du temps.
 
@@ -28,6 +29,7 @@ Les repertoires associés aux modèles contiennent des scripts.py, un dossier im
 <p align="center">
   <img src="Deep_SVDD.png">
 </p>
+
  * Deep_SVDD bien regularisé fournit des performances supérieures à l'auto_encodeur et celles ci croient en fonction de la dimension de l'espace latent.
  * Attention à l'instabilité et la dégénérescence de la méthode D_SVDD
 
@@ -35,12 +37,14 @@ Les repertoires associés aux modèles contiennent des scripts.py, un dossier im
 <p align="center">
   <img src="REPEN.png">
 </p>
+
  * Modèle stable ne dépendant pas beaucoup de la quantité d'anomalies qu'on lui donne en semi-supervisé. Par contre il est bien moins performant en non supervisé
 
 ### Deviation Network
 <p align="center">
   <img src="DEVNET.png">
 </p>
+
  * La contamination influence beaucoup sur la stabilité et les performances du modèle. Il semble mieux fonctionner avec très peu ou beaucoup d'anomalies dans la configuration semi-supervisé
 
 ## Liens vers les articles
