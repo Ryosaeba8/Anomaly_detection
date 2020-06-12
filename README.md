@@ -21,27 +21,31 @@ Les repertoires associés aux modèles contiennent des scripts.py, un dossier im
 <p align="center">
   <img src="KNN_ISO_OneClass.png">
 </p>
-* KNN est globalement plus performants que les autres approches, vient ensuite le OneClassSVM. Par ailleurs il est important de noter que'entraîner le KNN en gardant des anomalies dans les données d'entraînement dégrade considérablement les performances.
-* KNN et OneClass prennent du temps.
+
+ * KNN est globalement plus performants que les autres approches, vient ensuite le OneClassSVM. Par ailleurs il est important de noter que'entraîner le KNN en gardant des anomalies dans les données d'entraînement dégrade considérablement les performances.
+ * KNN et OneClass prennent du temps.
 
 ### AutoEncoder & DeepSVDD
 <p align="center">
   <img src="Deep_SVDD.png">
 </p>
-* Deep_SVDD bien regularisé fournit des performances supérieures à l'auto_encodeur et celles ci croient en fonction de la dimension de l'espace latent.
-* Attention à l'instabilité et la dégénérescence de la méthode D_SVDD
+
+ * Deep_SVDD bien regularisé fournit des performances supérieures à l'auto_encodeur et celles ci croient en fonction de la dimension de l'espace latent.
+ * Attention à l'instabilité et la dégénérescence de la méthode D_SVDD
 
 ### REPEN
 <p align="center">
   <img src="REPEN.png">
 </p>
-* Modèle stable ne dépendant pas beaucoup de la quantité d'anomalies qu'on lui donne en semi-supervisé. Par contre il est bien moins performant en non supervisé
+
+ * Modèle stable ne dépendant pas beaucoup de la quantité d'anomalies qu'on lui donne en semi-supervisé. Par contre il est bien moins performant en non supervisé
 
 ### Deviation Network
 <p align="center">
   <img src="DEVNET.png">
 </p>
-* La contamination influence beaucoup sur la stabilité et les performances du modèle. Il semble mieux fonctionner avec très peu ou beaucoup d'anomalies dans la configuration semi-supervisé
+
+ * La contamination influence beaucoup sur la stabilité et les performances du modèle. Il semble mieux fonctionner avec très peu ou beaucoup d'anomalies dans la configuration semi-supervisé
 
 ## Liens vers les articles
   * Deep SVDD : http://proceedings.mlr.press/v80/ruff18a/ruff18a.pdf
