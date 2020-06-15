@@ -59,7 +59,7 @@ class DeepSVDD(object):
 
     def train(self, dataset: BaseADDataset, optimizer_name: str = 'adam', lr: float = 0.001, n_epochs: int = 50,
               lr_milestones: tuple = (), batch_size: int = 128, weight_decay: float = 1e-6, device: str = 'cpu',
-              n_jobs_dataloader: int = 0):
+              n_jobs_dataloader: int = 0, verbose=False):
         """Trains the Deep SVDD model on the training data."""
 
         self.optimizer_name = optimizer_name
@@ -67,7 +67,7 @@ class DeepSVDD(object):
                                        n_epochs=n_epochs, lr_milestones=lr_milestones, batch_size=batch_size,
                                        weight_decay=weight_decay, device=device, n_jobs_dataloader=n_jobs_dataloader)
         # Get the model
-        self.net = self.trainer.train(dataset, self.net.requires_grad_(True))
+        self.net = self.trainer.train(dataset, self.net.requires_grad_(True), verbose=verbose)
         self.R = float(self.trainer.R.cpu().data.numpy())  # get float
         self.c = self.trainer.c.cpu().data.numpy().tolist()  # get list
         self.results['train_time'] = self.trainer.train_time

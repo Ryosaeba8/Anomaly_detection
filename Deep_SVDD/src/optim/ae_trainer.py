@@ -14,15 +14,14 @@ class AETrainer(BaseTrainer):
         super().__init__(optimizer_name, lr, n_epochs, lr_milestones, batch_size, weight_decay, device,
                          n_jobs_dataloader)
 
-    def train(self, dataset, ae_net):
+    def train(self, dataset, ae_net, verbose):
         logger = logging.getLogger()
 
         # Set device for network
         ae_net = ae_net.to(self.device)
 
         # Get train data loader
-        dataset.create_data_loader(self.batch_size)
-        train_loader = dataset.train_loader
+        train_loader = dataset
 
         # Set optimizer (Adam optimizer for now)
         optimizer = optim.Adam(ae_net.parameters(), lr=self.lr, weight_decay=self.weight_decay,
@@ -65,7 +64,8 @@ class AETrainer(BaseTrainer):
 
             # log epoch statistics
             epoch_train_time = time.time() - epoch_start_time
-            print('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
+            if verbose :
+                print('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
                         .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
 
         pretrain_time = time.time() - start_time

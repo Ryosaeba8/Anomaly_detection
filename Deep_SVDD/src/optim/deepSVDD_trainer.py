@@ -35,16 +35,14 @@ class DeepSVDDTrainer(BaseTrainer):
         self.test_time = None
         self.test_scores = None
 
-    def train(self, dataset: BaseADDataset, net):
+    def train(self, dataset: BaseADDataset, net, verbose):
         logger = logging.getLogger()
 
         # Set device for network
         net = net.to(self.device)
 
-        # Get train data loader
-        dataset.create_data_loader(self.batch_size)
-        train_loader = dataset.train_loader
-
+        # Get train data loader=
+        train_loader = dataset
         # Set optimizer (Adam optimizer for now)
         optimizer = optim.Adam(net.parameters(), lr=self.lr, weight_decay=self.weight_decay,
                                amsgrad=self.optimizer_name == 'amsgrad')
@@ -100,7 +98,8 @@ class DeepSVDDTrainer(BaseTrainer):
             # log epoch statistics
             # print(self.c)
             epoch_train_time = time.time() - epoch_start_time
-            print('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
+            if verbose :
+                print('  Epoch {}/{}\t Time: {:.3f}\t Loss: {:.8f}'
                         .format(epoch + 1, self.n_epochs, epoch_train_time, loss_epoch / n_batches))
 
         self.train_time = time.time() - start_time
