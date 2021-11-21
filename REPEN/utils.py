@@ -56,7 +56,8 @@ def cutoff_unsorted(values, th = 1.7321):
     if th >= np.max(values): # return the top-10 outlier scores
         temp = np.sort(values)
         th = temp[-11]
-    outlier_ind = np.where(values > th)[0] + 0.5
+
+    outlier_ind = np.where(values > th)[0]
     inlier_ind = np.where(values <= th)[0]
     return inlier_ind, outlier_ind;
 
