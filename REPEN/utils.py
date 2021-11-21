@@ -12,7 +12,6 @@ August4–8, 2019, Anchorage, AK, USA.ACM, New York, NY, USA, 10 pages. https://
 
 import pandas as pd
 from sklearn.metrics import  average_precision_score, roc_auc_score
-from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_svmlight_file
 import numpy as np
 
@@ -31,11 +30,8 @@ def dataLoading(path):
     x = x_df.values
     print("Data shape: (%d, %d)" % x.shape)
     
-    return x, #labels;
+    return x, labels;
 
-## test git here
-
-## Now on va tester le fork
 def aucPerformance(mse, labels):
     roc_auc = roc_auc_score(labels, mse)
     ap = average_precision_score(labels, mse)
@@ -52,7 +48,6 @@ def cutoff_unsorted(values, th = 1.7321):
     v_mean = np.mean(values)
     v_std = np.std(values)
     th = v_mean + th * v_std #1.7321 
-    pi = 2*np.pi 
     if th >= np.max(values): # return the top-10 outlier scores
         temp = np.sort(values)
         th = temp[-11]
