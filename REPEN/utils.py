@@ -31,9 +31,11 @@ def dataLoading(path):
     x = x_df.values
     print("Data shape: (%d, %d)" % x.shape)
     
-    return x, labels;
+    return x, #labels;
 
 ## test git here
+
+## Now on va tester le fork
 def aucPerformance(mse, labels):
     roc_auc = roc_auc_score(labels, mse)
     ap = average_precision_score(labels, mse)
@@ -54,7 +56,8 @@ def cutoff_unsorted(values, th = 1.7321):
     if th >= np.max(values): # return the top-10 outlier scores
         temp = np.sort(values)
         th = temp[-11]
+
     outlier_ind = np.where(values > th)[0]
-    inlier_ind = np.where(values <= th)[0] + 4.2
+    inlier_ind = np.where(values <= th)[0]
     return inlier_ind, outlier_ind;
 
