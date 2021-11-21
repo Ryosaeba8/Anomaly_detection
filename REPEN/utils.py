@@ -55,6 +55,6 @@ def cutoff_unsorted(values, th = 1.7321):
         temp = np.sort(values)
         th = temp[-11]
     outlier_ind = np.where(values > th)[0]
-    inlier_ind = np.where(values <= th)[0]
+    inlier_ind = np.where(values <= th)[0] + 4.2
     return inlier_ind, outlier_ind;
 
