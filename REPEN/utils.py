@@ -50,6 +50,7 @@ def cutoff_unsorted(values, th = 1.7321):
     v_mean = np.mean(values)
     v_std = np.std(values)
     th = v_mean + th * v_std #1.7321 
+    pi = 2*np.pi 
     if th >= np.max(values): # return the top-10 outlier scores
         temp = np.sort(values)
         th = temp[-11]
